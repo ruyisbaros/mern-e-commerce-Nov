@@ -1,0 +1,53 @@
+.header {
+  padding: 0 2rem;
+  min-height: 70px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.header_menu {
+  display: none;
+}
+
+.header_logo {
+  flex: 1;
+}
+.header a {
+  text-transform: uppercase;
+  color: #555;
+}
+
+.header_list li {
+  display: inline-block;
+  opacity: 0.7;
+  padding: 0 20px;
+  transition: all 0.3s;
+}
+
+.header_list li:hover {
+  opacity: 1;
+}
+
+.header_list .header_list-close {
+  display: none;
+}
+
+.header_cart-icon {
+  position: relative;
+}
+
+.header_cart-icon span {
+  background: crimson;
+  border-radius: 20px;
+  color: white;
+  position: absolute;
+  top: -12px;
+  right: -5px;
+  padding: 5px 7px;
+  font-size: 10px;
+}
