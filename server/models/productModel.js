@@ -17,24 +17,6 @@ const productSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    rate_times: {
-      type: Number,
-      default: 0,
-    },
-
-    rate_content: [
-      {
-        rate_value: {
-          type: Number,
-          default: 1,
-        },
-        rate_comment: {
-          type: String,
-          trim: true,
-        },
-        rate_maker: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-      },
-    ],
     quantity: {
       type: Number,
       default: 0,
