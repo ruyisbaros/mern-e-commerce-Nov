@@ -1,0 +1,92 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Outfit", sans-serif;
+}
+
+li {
+  list-style: none;
+  padding: 0;
+}
+.text_area {
+  resize: none;
+  height: 150px;
+  width: 100%;
+  padding: 10px;
+}
+.btn,
+button,
+input {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+img {
+  object-fit: cover;
+}
+
+.link_class {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s;
+}
+
+.link_class:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.App {
+  max-width: 100vw;
+  min-height: 100vh;
+  background: white;
+  overflow: hidden;
+}
+
+.App .main {
+  /* background-color: #ccc; */
+  max-width: 90vw;
+  width: 100%;
+  min-height: 100vh;
+  margin: auto;
+  margin-top: 8rem;
+  /* background-color: #eee; */
+}
+
+.icon_white {
+  color: white;
+}
+.icon_silver {
+  color: silver;
+}
+.icon_green {
+  color: green;
+}
+.icon_red {
+  color: red;
+}
+.icon_dark {
+  color: gray;
+}
+
+.rating span {
+  color: #ffc000;
+}
+
+@media (max-width: 800px) {
+  .App .main {
+    /* background-color: #ccc; */
+    max-width: 95vw;
+
+    /* background-color: #eee; */
+  }
+}
+
+/* IMPORT STYLES */
+@import url("./styles/loading.css");
