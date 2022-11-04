@@ -8,11 +8,11 @@ const productsSlicer = createSlice({
   name: "products",
   initialState,
   reducers: {
-    fetchProducts: (state, action) => {
+    getProducts: (state, action) => {
       state.products = action.payload;
     },
   },
 });
 
-export const { fetchProducts } = productsSlicer.actions;
+export const { getProducts } = productsSlicer.actions;
 export default productsSlicer.reducer;

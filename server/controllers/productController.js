@@ -55,16 +55,14 @@ exports.getAllProducts = asyncHandler(async (req, res) => {
     .filtering()
     .sorting()
     .paginating();
-  const products = await features.query;
+  const products = await features.query.populate("category images");
 
   res.status(201).json({ pageSize: products.length, products });
 });
 
 exports.getAProduct = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const product = await Product.findById(id).populate(
-    "rate_content category images"
-  );
+  const product = await Product.findById(id).populate("category images");
 
   if (!product)
     return res
@@ -94,7 +92,7 @@ exports.createProduct = asyncHandler(async (req, res) => {
   });
 
   const fulledProduct = await Product.findById(createdProduct._id).populate(
-    "rate_content category images"
+    "category images"
   );
 
   res.status(201).json(fulledProduct);
@@ -147,7 +145,7 @@ exports.updateProduct = asyncHandler(async (req, res) => {
       images,
     },
     { new: true }
-  ).populate("rate_content category images");
+  ).populate("category images");
 
   res.status(201).json(updatedProduct);
 });
