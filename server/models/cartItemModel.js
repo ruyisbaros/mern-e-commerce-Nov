@@ -4,7 +4,7 @@ const cartItemSchema = new mongoose.Schema(
   {
     quantity: {
       type: Number,
-      default: 0,
+      default: 1,
     },
     owner: {
       type: mongoose.Schema.Types.ObjectId,

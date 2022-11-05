@@ -1,0 +1,32 @@
+.admin-home {
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2rem;
+}
+
+.admin-home img {
+  margin-top: 2rem;
+  width: 70%;
+  height: 60%;
+}
+@media (max-width: 800px) {
+  .admin-home > h2 {
+    font-size: 24px;
+  }
+  .admin-home img {
+    width: 80%;
+    height: 70%;
+  }
+  @media (max-width: 500px) {
+    .admin-home > h2 {
+      font-size: 20px;
+    }
+    .admin-home img {
+      width: 90%;
+      height: 70%;
+    }
+  }
+}
