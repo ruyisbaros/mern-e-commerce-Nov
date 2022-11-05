@@ -59,7 +59,8 @@ img {
   min-height: 100vh;
   margin: 0 auto;
   padding: 0 20px;
-  /* margin-top: 8rem; */
+  padding-top: 1rem;
+  margin-top: 6rem;
   /* background-color: #eee; */
   box-shadow: 0 0 35px #eee;
 }

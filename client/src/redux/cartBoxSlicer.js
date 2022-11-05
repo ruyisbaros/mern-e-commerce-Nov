@@ -17,7 +17,7 @@ const cartBoxSlicer = createSlice({
     },
     removeFromCartItems: (state, action) => {
       state.cartItems = state.cartItems.filter(
-        (crt) => crt.id !== action.payload
+        (crt) => crt._id !== action.payload
       );
     },
     getTotalValue: (state, action) => {

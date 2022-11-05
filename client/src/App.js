@@ -30,7 +30,8 @@ function App() {
   const { loading } = useSelector((store) => store.loadStatus);
   const { logging } = useSelector((store) => store.currentUser);
   const { token, currentUser } = useSelector((store) => store.currentUser);
-  //console.log(token);
+  const { cartItems } = useSelector((store) => store.cartItems);
+  console.log(cartItems);
   const [isAdmin, setIsAdmin] = useState(false);
   const refreshTokenFunc = async () => {
     try {
@@ -102,7 +103,7 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={isAdmin ? <AdminHome /> : <HomeClient />}
+              element={isAdmin ? <AdminHome /> : <Products isAdmin={isAdmin} />} //Later I will design a HomePage. Just now let it not browse empty!!!
             />
             <Route path="/products" element={<Products isAdmin={isAdmin} />} />
             <Route path="/products/:id" element={<ProductReview />} />

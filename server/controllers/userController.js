@@ -19,10 +19,22 @@ exports.getAnyUser = asyncHandler(async (req, res) => {
   res.status(200).json(user);
 });
 
+/* populate({
+            path: "comments",
+            populate: {
+                path: "owner likes",
+                select: "-password"
+            } */
+
 exports.getUserCartInfo = asyncHandler(async (req, res) => {
-  const cartItems = await CartItem.find({ owner: req.params.id }).populate(
-    "owner product"
-  );
+  const cartItems = await CartItem.find({ owner: req.params.id })
+    .populate("owner")
+    .populate({
+      path: "product",
+      populate: {
+        path: "images",
+      },
+    });
 
   res.status(201).json(cartItems);
 });
