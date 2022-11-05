@@ -13,15 +13,46 @@ import ProductReview from "./pages/ProductReview";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Cart from "./pages/Cart";
+import axios from "axios";
+import { refreshToken, userLoggedFinish } from "./redux/currentUserSlicer.js";
 
 function App() {
   const dispatch = useDispatch();
   const { loading } = useSelector((store) => store.loadStatus);
+  const { logging } = useSelector((store) => store.currentUser);
+  const { token, currentUser } = useSelector((store) => store.currentUser);
+  //console.log(token);
+  const refreshTokenFunc = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/auth/refresh_token");
+      dispatch(
+        refreshToken({
+          token: data.accessToken,
+          currentUser: data.current_user,
+        })
+      );
+    } catch (error) {
+      dispatch(userLoggedFinish());
+      alert(error.response.data.message);
+    }
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("firstLogin")) {
+      refreshTokenFunc();
+
+      setTimeout(() => {
+        refreshTokenFunc();
+      }, 6 * 24 * 60 * 60 * 1000); //6 days
+    }
+  }, [token, localStorage.getItem("firstLogin")]);
+
   return (
     <BrowserRouter>
       <ToastContainer position="bottom-center" limit={1} />
 
       {loading && <Loading />}
+      {logging && <Loading />}
       <div className="App">
         <HeaderClient />
         <div className="main">

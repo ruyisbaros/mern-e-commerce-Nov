@@ -21,11 +21,8 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     avatar: {
-      type: Object,
-      default: {
-        url: "https://png.pngtree.com/png-vector/20190223/ourmid/pngtree-vector-avatar-icon-png-image_695765.jpg",
-        public_id: String,
-      },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Image",
     },
     role: {
       type: Array,

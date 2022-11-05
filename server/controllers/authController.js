@@ -14,7 +14,7 @@ const asyncHandler = require("express-async-handler");
 
 //Sign Up or Register
 exports.register = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, avatar } = req.body;
 
   const uniqueCheck = await User.findOne({ email });
   if (uniqueCheck) {
@@ -22,7 +22,11 @@ exports.register = asyncHandler(async (req, res) => {
       .status(401)
       .json({ message: `${email} emailId is already in Used` });
   }
-  const registeredUser = await User.create({ name, email, password });
+  const registeredUser = await (
+    await User.create({ name, email, password, avatar })
+  )
+    .populate("avatar")
+    .select("-password");
 
   const accessToken = registeredUser.createJwtToken();
   const refreshToken = registeredUser.createReFreshToken();
@@ -58,7 +62,9 @@ exports.login = asyncHandler(async (req, res) => {
     maxAge: 7 * 24 * 60 * 60 * 1000, //7 days
   });
 
-  const returnedUser = await User.findById(user._id).select("-password");
+  const returnedUser = await User.findById(user._id)
+    .populate("avatar")
+    .select("-password");
 
   res.status(200).json({ returnedUser, accessToken });
 });

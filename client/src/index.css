@@ -17,6 +17,9 @@ li {
   width: 100%;
   padding: 10px;
 }
+button {
+  border: none;
+}
 .btn,
 button,
 input {
@@ -39,7 +42,6 @@ img {
 
 .link_class:hover {
   text-decoration: none;
-  color: inherit;
 }
 
 .App {
