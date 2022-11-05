@@ -42,6 +42,7 @@ img {
 
 .link_class:hover {
   text-decoration: none;
+  color: inherit;
 }
 
 .App {

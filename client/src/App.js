@@ -23,6 +23,7 @@ import axios from "axios";
 import { refreshToken, userLoggedFinish } from "./redux/currentUserSlicer.js";
 import OrderHistory from "./pages/OrderHistory.jsx";
 import AdminHeader from "./components/AdminHeader.jsx";
+import { fetchCartItems } from "./redux/cartBoxSlicer.js";
 
 function App() {
   const dispatch = useDispatch();
@@ -64,6 +65,31 @@ function App() {
     }
   }, [currentUser]);
 
+  /* Fetch Cart Box */
+
+  const fetchCartBox = async () => {
+    try {
+      const { data } = await axios.get(
+        `/api/v1/users/get_cart/${currentUser._id}`,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+      console.log(data);
+      dispatch(fetchCartItems(data));
+    } catch (error) {
+      alert(error.response.data.message);
+    }
+  };
+
+  useEffect(() => {
+    if (currentUser) {
+      fetchCartBox();
+    }
+  }, [token, dispatch, currentUser]);
+
   return (
     <BrowserRouter>
       <ToastContainer position="bottom-center" limit={1} />
@@ -78,7 +104,7 @@ function App() {
               path="/"
               element={isAdmin ? <AdminHome /> : <HomeClient />}
             />
-            <Route path="/products" element={<Products />} />
+            <Route path="/products" element={<Products isAdmin={isAdmin} />} />
             <Route path="/products/:id" element={<ProductReview />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

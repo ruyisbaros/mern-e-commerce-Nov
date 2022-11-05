@@ -13,6 +13,7 @@ import { authLogout } from "../redux/currentUserSlicer";
 const HeaderClient = () => {
   const dispatch = useDispatch();
   const [isLogged, setIsLogged] = useState(false);
+  const { cartItems } = useSelector((store) => store.cartItems);
 
   useEffect(() => {
     if (localStorage.getItem("firstLogin")) {
@@ -79,7 +80,7 @@ const HeaderClient = () => {
         </li>
       </ul>
       <div className="header_cart-icon">
-        <span>0</span>
+        <span>{cartItems.length}</span>
         <Link to="/cart" className="link_class">
           <BsCart4 size={25} />
         </Link>

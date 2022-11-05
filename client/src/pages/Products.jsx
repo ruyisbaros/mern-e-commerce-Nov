@@ -6,7 +6,7 @@ import axios from "axios";
 import ProductItem from "../components/ProductItem";
 import { getProducts } from "../redux/productsSlicer";
 
-const Products = () => {
+const Products = ({ isAdmin }) => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
 
@@ -31,7 +31,7 @@ const Products = () => {
   return (
     <div className="products">
       {products?.map((product) => (
-        <ProductItem key={product._id} {...product} />
+        <ProductItem isAdmin={isAdmin} key={product._id} {...product} />
       ))}
     </div>
   );

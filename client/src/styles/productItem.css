@@ -1,6 +1,6 @@
 .product_item {
   max-width: 300px;
-  height: 515px;
+  height: 530px;
   overflow: hidden;
   padding: 15px;
   box-shadow: 0 0 15px #ddd;
@@ -62,4 +62,13 @@
 #btn_view {
   background: teal;
   margin-left: 5px;
+}
+
+/* Admin Check box */
+
+.product_item > input {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  z-index: 1;
 }
