@@ -1,4 +1,5 @@
 const Product = require("../models/productModel");
+const Rate = require("../models/rateModel");
 const asyncHandler = require("express-async-handler");
 const {
   imageDeleteHandler,
@@ -43,7 +44,7 @@ class APIfeatures {
 
   paginating() {
     const page = this.queryString.page * 1 || 1;
-    const limit = this.queryString.limit * 1 || 3;
+    const limit = this.queryString.limit * 1 || 20;
     const skip = (page - 1) * limit;
     this.query = this.query.skip(skip).limit(limit);
     return this;
@@ -57,7 +58,7 @@ exports.getAllProducts = asyncHandler(async (req, res) => {
     .paginating();
   const products = await features.query.populate("category images");
 
-  res.status(201).json({ pageSize: products.length, products });
+  res.status(200).json({ pageSize: products.length, products });
 });
 
 exports.getAProduct = asyncHandler(async (req, res) => {
@@ -69,7 +70,7 @@ exports.getAProduct = asyncHandler(async (req, res) => {
       .status(400)
       .json({ message: `No Product found with ${id} ID number` });
 
-  res.status(201).json(product);
+  res.status(200).json(product);
 });
 
 exports.createProduct = asyncHandler(async (req, res) => {
@@ -148,4 +149,12 @@ exports.updateProduct = asyncHandler(async (req, res) => {
   ).populate("category images");
 
   res.status(201).json(updatedProduct);
+});
+
+/* RATINGs */
+
+exports.getProductReviews = asyncHandler(async (req, res) => {
+  const rates = await Rate.find({ rated: req.params.id }).populate("rater");
+
+  res.status(200).json(rates);
 });

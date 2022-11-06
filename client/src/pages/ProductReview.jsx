@@ -92,3 +92,25 @@ const ProductReview = () => {
 };
 
 export default ProductReview;
+
+/* <div className="product_review-left">
+          <div className="product_review-left-1">
+            {singleProduct?.productImages?.map((img, i) => (
+              <div
+                key={img.id}
+                className={
+                  bigImageIndex === i ? "images-box active" : "images-box"
+                }
+              >
+                <img
+                  onClick={() => setBigImageIndex(i)}
+                  src={img.imageUrl}
+                  alt=""
+                />
+              </div>
+            ))}
+          </div>
+          <div className="product_review-left-2">
+            <img src={bigImage} alt="" />
+          </div>
+        </div> */

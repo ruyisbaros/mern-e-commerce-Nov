@@ -99,7 +99,7 @@ const CreateProduct = () => {
 
     //console.log(files);
 
-    await files.forEach((file) => {
+    files.forEach((file) => {
       if (!file) return alert("Please select an image");
       if (file.size > 1024 * 1024 * 5)
         return alert("Your file is too large (max 1mb allowed)");
