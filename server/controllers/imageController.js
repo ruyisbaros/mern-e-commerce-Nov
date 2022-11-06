@@ -47,7 +47,7 @@ exports.uploadImage = asyncHandler(async (req, res) => {
         public_id: result.public_id.split("/")[1],
         url: result.secure_url,
       });
-      console.log(newImage);
+      //console.log(newImage);
       res.status(201).json(newImage);
     }
   );

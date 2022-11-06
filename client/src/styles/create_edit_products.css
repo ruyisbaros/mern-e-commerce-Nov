@@ -1,0 +1,186 @@
+.add_product {
+  width: 100%;
+  min-height: 100vh;
+  margin-bottom: 2rem;
+  /* background-color: #ccc; */
+}
+
+.add_product .add_product_form {
+  width: 40%;
+  margin: 2rem auto;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add_product_form input {
+  margin-bottom: 1rem;
+  width: 70%;
+  border: 1px solid #ccc;
+  outline-color: rgb(88, 88, 242);
+  padding: 5px;
+  border-radius: 4px;
+}
+.add_product_form textarea {
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  resize: none;
+  outline-color: rgb(88, 88, 242);
+  padding: 5px;
+  border-radius: 4px;
+}
+.image_upload input[type="file"] {
+  display: none;
+}
+.cats_contents {
+  margin: 1rem 0;
+  width: 70%;
+  /* background-color: #ccc; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cats_contents .cats {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.add_product_form .cats label {
+  transform: translateY(-5px);
+}
+
+/* Image Upload */
+.input_upldImages {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+.input_upldImages i {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.input_upldImages .file_upload {
+  position: relative;
+  overflow: hidden;
+  margin: 0 10px;
+}
+
+.input_upldImages .file_upload #file {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.show_upldImages {
+  max-height: 500px;
+  width: 80%;
+  border: 1px solid #ccc;
+  padding-left: 1rem;
+}
+.show_upldImages_box {
+  margin: 1rem auto;
+  display: flex;
+
+  width: 100%;
+}
+
+.show_upldImages .sml_img_box {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+}
+.show_upldImages .sml_img_box img {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
+}
+.show_upldImages .img_big_box {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Active class */
+.active_img {
+  padding: 5px;
+  border: 1px solid teal;
+}
+.show_upldImages .img_big_box img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+
+.show_upldImages .file_img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.show_upldImages .file_img .times {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: white;
+  padding: 3px 7px;
+  border: 1px solid crimson;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.status_body .show_upldImages .file_img img {
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+.product_submit {
+  padding: 2rem 0;
+}
+
+@media (max-width: 1280px) {
+  .add_product .add_product_form {
+    width: 60%;
+  }
+
+  .add_product_form input {
+    width: 80%;
+  }
+  .add_product_form textarea {
+    width: 80%;
+  }
+}
+@media (max-width: 900px) {
+  .add_product .add_product_form {
+    width: 80%;
+  }
+
+  .add_product_form input {
+    width: 80%;
+  }
+  .add_product_form textarea {
+    width: 80%;
+  }
+}
+@media (max-width: 500px) {
+  .add_product .add_product_form {
+    width: 100%;
+  }
+  .cats_contents {
+    width: 95%;
+  }
+  .add_product_form input {
+    width: 95%;
+  }
+  .add_product_form textarea {
+    width: 95%;
+  }
+}
