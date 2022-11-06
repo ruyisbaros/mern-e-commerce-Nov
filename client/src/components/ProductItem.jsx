@@ -63,6 +63,17 @@ const Product = ({
     setItemInBaseket(cartItems?.find((item) => item.product._id === _id));
   }, [cartItems.length, _id]);
 
+  const deleteHandle = async () => {
+    try {
+      await axios.delete(`/api/v1/products/delete_one/${_id}`, {
+        headers: { Authorization: token },
+      });
+      window.location.reload();
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
+
   return (
     <div className="product_item">
       {isAdmin && <input type="checkbox" checked={checked} />}
@@ -78,7 +89,12 @@ const Product = ({
       <div className="row_btn">
         {isAdmin ? (
           <>
-            <Link id="btn_buy" className="link_class" to="#!">
+            <Link
+              id="btn_buy"
+              onClick={deleteHandle}
+              className="link_class"
+              to="#!"
+            >
               Delete
             </Link>
             <Link
