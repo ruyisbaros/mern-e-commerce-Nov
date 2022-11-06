@@ -33,8 +33,9 @@ function App() {
   const { logging } = useSelector((store) => store.currentUser);
   const { token, currentUser } = useSelector((store) => store.currentUser);
   const { cartItems } = useSelector((store) => store.cartItems);
-  console.log(cartItems);
+  //console.log(cartItems);
   const [isAdmin, setIsAdmin] = useState(false);
+
   const refreshTokenFunc = async () => {
     try {
       const { data } = await axios.get("/api/v1/auth/refresh_token");

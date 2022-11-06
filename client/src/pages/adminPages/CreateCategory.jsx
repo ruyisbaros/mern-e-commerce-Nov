@@ -39,34 +39,34 @@ const AddCategory = () => {
   const [selectedcat_image, setSelectedcat_image] = useState("");
 
   const handleImageUpload = async (e) => {
-    const file = e.target.files[0];
-    setIsCreated(true);
-
-    if (!file) return alert("Please select an image");
-    if (file.size > 1024 * 1024 * 1) {
-      alert("Your file is too large (max 1mb allowed)");
-      setSelectedFile("");
-      return;
-    }
-    if (file.type !== "image/jpeg" && file.type !== "image/png") {
-      alert("Only jpeg, jpg or PNG images are allowed");
-      setSelectedFile("");
-      return;
-    }
-
     try {
+      const file = e.target.files[0];
+      setIsCreated(true);
+
+      if (!file) return alert("Please select an image");
+      if (file.size > 1024 * 1024 * 1) {
+        alert("Your file is too large (max 1mb allowed)");
+        setSelectedFile("");
+        return;
+      }
+      if (file.type !== "image/jpeg" && file.type !== "image/png") {
+        alert("Only jpeg, jpg or PNG images are allowed");
+        setSelectedFile("");
+        return;
+      }
+
       setSelectedFile(file);
       let formData = new FormData();
-      formData.append("multipartFile", file);
+      formData.append("file", file);
 
       const { data } = await axios.post("/api/v1/images/upload", formData);
       setIsCreated(false);
       console.log(data);
-      setSelectedcat_image(data.cat_image.public_id);
-      setNewCategory({ ...newCategory, cat_image: data.cat_image._id });
+      setSelectedcat_image(data.public_id);
+      setNewCategory({ ...newCategory, cat_image: data._id });
     } catch (error) {
       setIsCreated(false);
-      toast.error(error.response.data.message);
+      //toast.error(error.response.data.message);
     }
   };
 

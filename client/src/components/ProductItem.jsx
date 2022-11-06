@@ -18,6 +18,7 @@ const Product = ({
   price,
   checked,
   isAdmin,
+  fetchProducts,
 }) => {
   const dispatch = useDispatch();
   const { token, currentUser } = useSelector((store) => store.currentUser);
@@ -48,6 +49,7 @@ const Product = ({
         );
         dispatch(addToCartItems(data));
         dispatch(loadingFinish());
+        fetchProducts();
       } catch (error) {
         dispatch(loadingFinish());
         toast.error(error.response.data.message);
@@ -76,7 +78,7 @@ const Product = ({
 
   return (
     <div className="product_item">
-      {isAdmin && <input type="checkbox" checked={checked} />}
+      {/* {isAdmin && <input type="checkbox" checked={checked} />} */}
       <img src={images[0].url} alt="product item" />
       <div className="product_item-box">
         <h4 title={title}>{title}</h4>

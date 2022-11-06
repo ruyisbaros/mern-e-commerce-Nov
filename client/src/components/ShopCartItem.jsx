@@ -35,7 +35,7 @@ const ShopCartItem = ({
   };
   return (
     <div className="shop_cart_items">
-      <div className="shop_cart_items-Sleft">
+      <div className="shop_cart_items-left">
         <Link to={`/products/${product._id}`}>
           <img src={product.images && product.images[0].url} alt="" />
         </Link>

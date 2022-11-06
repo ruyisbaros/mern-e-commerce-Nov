@@ -31,7 +31,12 @@ const Products = ({ isAdmin }) => {
   return (
     <div className="products">
       {products?.map((product) => (
-        <ProductItem isAdmin={isAdmin} key={product._id} {...product} />
+        <ProductItem
+          fetchProducts={fetchProducts}
+          isAdmin={isAdmin}
+          key={product._id}
+          {...product}
+        />
       ))}
     </div>
   );

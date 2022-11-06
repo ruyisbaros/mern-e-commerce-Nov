@@ -79,7 +79,7 @@ const EditCategory = () => {
     try {
       setSelectedFile(file);
       let formData = new FormData();
-      formData.append("multipartFile", file);
+      formData.append("file", file);
 
       const { data } = await axios.post("/api/v1/images/upload", formData);
       setIsCreated(false);
