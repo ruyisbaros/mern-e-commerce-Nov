@@ -105,7 +105,7 @@
 .cart_item-price {
   margin-top: 10px;
   font-weight: bolder;
-  color: #a435f0;
+  color: teal;
 }
 
 /* Shop cart right with cart info, payment actions */
@@ -152,7 +152,7 @@
 }
 
 .shop_cart-right-checkout {
-  background-color: #a435f0;
+  background-color: teal;
   color: #fff;
   border: none;
   width: 100%;
@@ -165,7 +165,7 @@
 }
 .right-total-value {
   font-size: 20px;
-  color: #a435f0;
+  color: teal;
   font-weight: bold;
 }
 
@@ -187,7 +187,7 @@
 
 .shop_cart-right-apply {
   flex: 1;
-  background-color: #a435f0;
+  background-color: teal;
   color: #fff;
   border: none;
   padding: 3px 0;

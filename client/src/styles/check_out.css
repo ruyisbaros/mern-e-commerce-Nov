@@ -179,7 +179,7 @@
 }
 
 .terms_service span {
-  color: #a435f0;
+  color: teal;
 }
 
 .check_out-right-checkout {
@@ -189,7 +189,7 @@
   border: none;
   padding: 15px 0;
   color: #fff;
-  background: #a435f0;
+  background: teal;
   font-weight: bold;
   letter-spacing: 1px;
   border-radius: 3px;

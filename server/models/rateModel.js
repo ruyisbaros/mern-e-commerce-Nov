@@ -4,7 +4,6 @@ const rateSchema = new mongoose.Schema(
   {
     rate_comment: {
       type: String,
-      required: true,
       trim: true,
     },
     rate_value: {

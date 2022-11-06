@@ -1,18 +1,60 @@
+.product_review_container {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Review detail of product */
 .product_review_main {
   width: 100%;
+  height: 400px;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   padding: 20px;
   font-size: 150%;
+  background-color: #eee;
 }
-.product_review_main img {
-  max-width: 400px;
+.product_review-left {
+  /* border: 1px solid #ccc; */
+  width: 50%;
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+}
+
+.product_review-left-1 {
+  flex: 1;
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+.product_review-left-1 .images-box {
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid green;
+  cursor: pointer;
+}
+.product_review-left-1 .images-box img {
   width: 100%;
-  height: 450px;
+  max-height: 100%;
   object-fit: contain;
-  margin: 20px;
+  transition: all 0.4s;
+}
+.images-box.active {
+  border-color: red;
+}
+.product_review-left-2 {
+  flex: 3;
   /* background-color: #ccc; */
+}
+
+.product_review-left-2 img {
+  width: 100%;
+  height: 50%;
+  object-fit: contain;
 }
 
 .product_review-box {
@@ -58,4 +100,112 @@
   padding: 7px 25px;
   text-transform: uppercase;
   letter-spacing: 2px;
+  font-size: 22px;
 }
+
+/* Rates */
+.product_ratings_reviews {
+  margin-top: 1rem;
+}
+.product_reviews_sorround {
+  width: 100%;
+  height: 100px;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+}
+
+.product_rate_result {
+  flex: 1;
+}
+.comments_evaluation {
+  flex: 3;
+  display: flex;
+  gap: 1rem;
+  transform: translateY(10px);
+}
+
+.comments_evaluation .rate_button {
+  background: teal;
+  color: #eee;
+  padding: 3px 7px;
+  cursor: pointer;
+}
+
+.make_rate_comment {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.make_rate_comment_sorround {
+  width: 33%;
+  height: 250px;
+  background-color: #fff;
+  padding: 1rem;
+  position: relative;
+}
+.make_rate_comment_sorround form {
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+}
+.make_rate_comment_sorround form input {
+  display: block;
+  margin-bottom: 1rem;
+}
+.make_rate_comment_sorround form textarea {
+  display: block;
+  resize: none;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.make_rate_comment_sorround form button {
+  display: block;
+  width: 20%;
+  margin: 1rem auto;
+  background: teal;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 5px 15px;
+}
+
+.review_close {
+  position: absolute;
+  top: 0;
+  right: -2rem;
+  color: red;
+  cursor: pointer;
+}
+
+/* User reviews */
+.see_product_reviews {
+  margin-top: 10px;
+  margin-bottom: 3rem;
+  width: 100%;
+  padding-left: 2rem;
+  border: 1px solid #ccc;
+}
+.see_product_reviews-box {
+  display: flex;
+  gap: 5rem;
+
+  align-items: center;
+  margin: 20px 0;
+}
+.see_product_reviews-box img {
+  width: 50px;
+  height: 50px;
+}
+
+/* RElateds */

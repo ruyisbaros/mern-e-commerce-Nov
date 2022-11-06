@@ -39,6 +39,7 @@ function App() {
   const refreshTokenFunc = async () => {
     try {
       const { data } = await axios.get("/api/v1/auth/refresh_token");
+      console.log(data);
       dispatch(
         refreshToken({
           token: data.accessToken,
@@ -59,7 +60,7 @@ function App() {
         refreshTokenFunc();
       }, 6 * 24 * 60 * 60 * 1000); //6 days
     }
-  }, [token, localStorage.getItem("firstLogin")]);
+  }, []);
 
   useEffect(() => {
     if (currentUser) {
@@ -68,6 +69,8 @@ function App() {
       }
     }
   }, [currentUser]);
+
+  console.log(currentUser);
 
   /* Fetch Cart Box */
 
@@ -109,7 +112,10 @@ function App() {
               element={isAdmin ? <AdminHome /> : <Products isAdmin={isAdmin} />} //Later I will design a HomePage. Just now let it not browse empty!!!
             />
             <Route path="/products" element={<Products isAdmin={isAdmin} />} />
-            <Route path="/products/:id" element={<ProductReview />} />
+            <Route
+              path="/products/:id"
+              element={<ProductReview currentUser={currentUser} />}
+            />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/cart" element={<Cart />} />
