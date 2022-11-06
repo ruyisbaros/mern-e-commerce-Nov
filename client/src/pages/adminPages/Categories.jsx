@@ -13,6 +13,7 @@ const Categories = () => {
       dispatch(loadingStart());
       const { data } = await axios.get("/api/v1/categories/all_cats");
       console.log(data);
+      setCategories(data);
       dispatch(loadingFinish());
     } catch (error) {
       dispatch(loadingFinish());
@@ -24,7 +25,7 @@ const Categories = () => {
     fetchCategories();
   }, []);
 
-  return <div>Categories</div>;
+  return <div className="categories">Categories</div>;
 };
 
 export default Categories;

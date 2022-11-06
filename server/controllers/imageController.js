@@ -73,17 +73,3 @@ exports.deleteImage = asyncHandler(async (req, res) => {
     }
   );
 });
-
-/* exports.deleteImagesOfProduct = asyncHandler(async (req, res) => {
-    const { productId } = req.params
-    const targetProduct = await Products.findById(productId)
-
-    targetProduct.images.forEach(obj => (
-        cloudinary.v2.uploader.destroy(obj.public_id, (err, result) => {
-            if (err) throw err;
-
-        })
-    ))
-    res.status(200).json({ message: "Image deleted successfully" })
-
-}) */
