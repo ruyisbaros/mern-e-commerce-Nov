@@ -5,13 +5,13 @@ const {
 } = require("../utils/deleteImageFromDatabaseAndCloud");
 
 exports.getAllCategories = asyncHandler(async (req, res) => {
-  const categories = await Category.find();
+  const categories = await Category.find().populate("cat_image");
   res.status(200).json(categories);
 });
 
 exports.getOneCategory = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const category = await Category.findById(id);
+  const category = await Category.findById(id).populate("cat_image");
 
   if (!category)
     return res.status(404).json({

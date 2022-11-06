@@ -24,6 +24,8 @@ import { refreshToken, userLoggedFinish } from "./redux/currentUserSlicer.js";
 import OrderHistory from "./pages/OrderHistory.jsx";
 import AdminHeader from "./components/AdminHeader.jsx";
 import { fetchCartItems } from "./redux/cartBoxSlicer.js";
+import CheckOut from "./pages/CheckOut.jsx";
+import CheckOutSingle from "./pages/CheckOutSingle";
 
 function App() {
   const dispatch = useDispatch();
@@ -111,6 +113,16 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/history" element={<OrderHistory />} />
+            <Route
+              path="/check_out"
+              element={<CheckOut token={token} currentUser={currentUser} />}
+            />
+            <Route
+              path="/check_out_single/:id"
+              element={
+                <CheckOutSingle token={token} currentUser={currentUser} />
+              }
+            />
             {/* Admin */}
             <Route
               path="/categories"

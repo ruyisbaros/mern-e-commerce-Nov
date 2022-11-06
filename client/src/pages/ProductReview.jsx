@@ -71,7 +71,7 @@ const ProductReview = () => {
           </span>
           <p>{reviewProduct?.description}</p>
           <p className="product_view-sold">Sold: {reviewProduct?.sold}</p>
-          <Link to="/cart" className="link_class cart">
+          <Link to={`/check_out_single/${id}`} className="link_class cart">
             Buy Now
           </Link>
         </div>

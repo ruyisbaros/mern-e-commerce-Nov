@@ -36,7 +36,7 @@ const ShopCartItem = ({
   return (
     <div className="shop_cart_items">
       <div className="shop_cart_items-Sleft">
-        <Link to={`/product/view/${product.id}`}>
+        <Link to={`/products/${product._id}`}>
           <img src={product.images && product.images[0].url} alt="" />
         </Link>
       </div>
