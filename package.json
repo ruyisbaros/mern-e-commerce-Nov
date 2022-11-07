@@ -4,8 +4,14 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "cd client && npm run start",
+    "server-install": "npm install",
+    "client-install": "cd client && npm install",
+    "install-all": "concurrently \" npm run server-install\" \" npm run client-install\"",
+    "dev": "concurrently \" npm run server\" \" npm run client\"",
+    "heroku-postbuild":"cd client && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +29,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.1",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "path": "^0.12.7"
   }
 }
