@@ -35,9 +35,16 @@ const AdminHeader = () => {
     }
   };
 
+  /* Responsive css func */
+  const [menu, setMenu] = useState(false);
+  const toggle = () => setMenu(!menu);
+  const styleResponsive = {
+    left: menu ? "0%" : "-100%",
+  };
+
   return (
     <div className="header">
-      <div className="header_menu">
+      <div className="header_menu" onClick={toggle}>
         <AiOutlineMenu size={30} />
       </div>
       <div className="header_logo">
@@ -47,7 +54,7 @@ const AdminHeader = () => {
           </Link>
         </h1>
       </div>
-      <ul className="header_list">
+      <ul style={styleResponsive} className="header_list">
         {isLogged ? (
           <>
             <li>
@@ -84,7 +91,7 @@ const AdminHeader = () => {
           </li>
         )}
 
-        <li className="header_list-close">
+        <li className="header_list-close" onClick={toggle}>
           <FaTimes size={25} />
         </li>
       </ul>

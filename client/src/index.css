@@ -89,6 +89,14 @@ img {
   .App .main {
     /* background-color: #ccc; */
     max-width: 95vw;
+    padding: 0 5px;
+    /* background-color: #eee; */
+  }
+}
+@media (max-width: 800px) {
+  .App .main {
+    /* background-color: #ccc; */
+    max-width: 98vw;
 
     /* background-color: #eee; */
   }

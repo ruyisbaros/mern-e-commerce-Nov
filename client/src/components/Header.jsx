@@ -36,9 +36,16 @@ const HeaderClient = () => {
     }
   };
 
+  /* Responsive css func */
+  const [menu, setMenu] = useState(false);
+  const toggle = () => setMenu(!menu);
+  const styleResponsive = {
+    left: menu ? "0%" : "-100%",
+  };
+
   return (
     <div className="header">
-      <div className="header_menu">
+      <div className="header_menu" onClick={toggle}>
         <AiOutlineMenu size={30} />
       </div>
       <div className="header_logo">
@@ -48,7 +55,7 @@ const HeaderClient = () => {
           </Link>
         </h1>
       </div>
-      <ul className="header_list">
+      <ul style={styleResponsive} className="header_list">
         {isLogged ? (
           <>
             <li>
@@ -75,7 +82,7 @@ const HeaderClient = () => {
           </li>
         )}
 
-        <li className="header_list-close">
+        <li onClick={toggle} className="header_list-close">
           <FaTimes size={25} />
         </li>
       </ul>
