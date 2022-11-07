@@ -122,8 +122,8 @@ const Register = () => {
         localStorage.setItem("currentUser", JSON.stringify(data[0]));
         /* toast.success("Welcome to e-commer page"); */
         localStorage.setItem("firstLogin", true);
-        navigate("/");
-        window.location.reload();
+        window.location.href = "/";
+        /* window.location.reload(); */
       } catch (error) {
         dispatch(userLoggedFinish());
         toast.error(error.response.data.message);
