@@ -58,34 +58,61 @@ const AdminHeader = () => {
         {isLogged ? (
           <>
             <li>
-              <Link to="/products" className="link_class">
+              <Link
+                onClick={() => setMenu(false)}
+                to="/products"
+                className="link_class"
+              >
                 Products
               </Link>
             </li>
             <li>
-              <Link to="/create_product" className="link_class">
+              <Link
+                onClick={() => setMenu(false)}
+                to="/create_product"
+                className="link_class"
+              >
                 Create Product
               </Link>
             </li>
             <li>
-              <Link to="/categories" className="link_class">
+              <Link
+                onClick={() => setMenu(false)}
+                to="/categories"
+                className="link_class"
+              >
                 Categories
               </Link>
             </li>
             <li>
-              <Link to="/create_category" className="link_class">
+              <Link
+                onClick={() => setMenu(false)}
+                to="/create_category"
+                className="link_class"
+              >
                 Create Category
               </Link>
             </li>
             <li>
-              <Link to="/" className="link_class" onClick={logout}>
+              <Link
+                onClick={() => {
+                  setMenu(false);
+                  logout();
+                }}
+                to="/"
+                className="link_class"
+              >
                 Logout
               </Link>
             </li>
           </>
         ) : (
           <li>
-            <Link to="/login" className="link_class">
+            <Link
+              onClick={() => setMenu(false)}
+              to="/login"
+              className="link_class"
+            >
               Login
             </Link>
           </li>

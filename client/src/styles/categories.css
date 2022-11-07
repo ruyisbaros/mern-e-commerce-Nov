@@ -80,3 +80,14 @@
   height: 25px;
   z-index: 1;
 }
+
+@media (max-width: 500px) {
+  .category_item {
+    width: 450px;
+  }
+}
+@media (max-width: 400px) {
+  .category_item {
+    width: 350px;
+  }
+}

@@ -59,24 +59,43 @@ const HeaderClient = () => {
         {isLogged ? (
           <>
             <li>
-              <Link to="/products" className="link_class">
+              <Link
+                onClick={() => setMenu(false)}
+                to="/products"
+                className="link_class"
+              >
                 Shop
               </Link>
             </li>
             <li>
-              <Link to="/history" className="link_class">
+              <Link
+                onClick={() => setMenu(false)}
+                to="/history"
+                className="link_class"
+              >
                 Order History
               </Link>
             </li>
             <li>
-              <Link onClick={logout} to="/" className="link_class">
+              <Link
+                onClick={() => {
+                  setMenu(false);
+                  logout();
+                }}
+                to="/"
+                className="link_class"
+              >
                 Logout
               </Link>
             </li>
           </>
         ) : (
           <li>
-            <Link to="/login" className="link_class">
+            <Link
+              onClick={() => setMenu(false)}
+              to="/login"
+              className="link_class"
+            >
               Login
             </Link>
           </li>
