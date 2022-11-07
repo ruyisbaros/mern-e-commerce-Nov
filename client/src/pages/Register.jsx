@@ -87,7 +87,7 @@ const Register = () => {
       toast.error(error.response.data.message);
     }
   };
-
+  console.log(signUpUser);
   const deleteImage = async () => {
     setSelectedFile("");
     const { data } = await axios.delete(
@@ -113,10 +113,8 @@ const Register = () => {
         dispatch(userLoggedFinish());
         dispatch(
           userLoggedSucces({
-            email: data[0].email,
-            firstName: data[0].firstName,
-            profileImage: data[0].image.imageUrl,
-            token: data[1],
+            currentUser: data.returnedUser,
+            token: data.accessToken,
           })
         );
         /* localStorage.setItem("token", data[1]);

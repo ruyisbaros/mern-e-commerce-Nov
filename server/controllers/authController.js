@@ -22,11 +22,7 @@ exports.register = asyncHandler(async (req, res) => {
       .status(401)
       .json({ message: `${email} emailId is already in Used` });
   }
-  const registeredUser = await (
-    await User.create({ name, email, password, avatar })
-  )
-    .populate("avatar")
-    .select("-password");
+  const registeredUser = await User.create({ name, email, password, avatar });
 
   const accessToken = registeredUser.createJwtToken();
   const refreshToken = registeredUser.createReFreshToken();
@@ -37,7 +33,11 @@ exports.register = asyncHandler(async (req, res) => {
     maxAge: 7 * 24 * 60 * 60 * 1000, //7 days
   });
 
-  res.status(200).json({ registeredUser, accessToken });
+  const returnedUser = await User.findById(registeredUser._id)
+    .populate("avatar")
+    .select("-password");
+
+  res.status(200).json({ returnedUser, accessToken });
 });
 
 //Login
