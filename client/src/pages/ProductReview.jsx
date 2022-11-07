@@ -30,38 +30,36 @@ const ProductReview = ({ currentUser }) => {
     setBigImageIndex(0);
   }, []);
 
-  const fetchProducts = async () => {
-    try {
-      dispatch(loadingStart());
-      const { data } = await axios.get("/api/v1/products/get_all");
-      console.log(data);
-      setProducts(data.products);
-      dispatch(getProducts(data.products));
-      dispatch(loadingFinish());
-    } catch (error) {
-      dispatch(loadingFinish());
-      toast.error(error.response.data.message);
-    }
-  };
-
   useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        dispatch(loadingStart());
+        const { data } = await axios.get("/api/v1/products/get_all");
+        console.log(data);
+        setProducts(data.products);
+        dispatch(getProducts(data.products));
+        dispatch(loadingFinish());
+      } catch (error) {
+        dispatch(loadingFinish());
+        toast.error(error.response.data.message);
+      }
+    };
     fetchProducts();
   }, []);
 
-  const fetchViewProduct = async () => {
-    try {
-      dispatch(loadingStart());
-      const { data } = await axios.get(`/api/v1/products/get_one/${id}`);
-      console.log(data);
-      setReviewProduct(data);
-      dispatch(loadingFinish());
-    } catch (error) {
-      dispatch(loadingFinish());
-      toast.error(error.response.data.message);
-    }
-  };
-
   useEffect(() => {
+    const fetchViewProduct = async () => {
+      try {
+        dispatch(loadingStart());
+        const { data } = await axios.get(`/api/v1/products/get_one/${id}`);
+        console.log(data);
+        setReviewProduct(data);
+        dispatch(loadingFinish());
+      } catch (error) {
+        dispatch(loadingFinish());
+        toast.error(error.response.data.message);
+      }
+    };
     if (id) {
       fetchViewProduct();
     }
@@ -71,15 +69,15 @@ const ProductReview = ({ currentUser }) => {
     setBigImage(reviewProduct?.images[bigImageIndex]?.url);
   }, [bigImageIndex, id, reviewProduct?.images]);
   /* REVIEW FUNCS (RATING) */
-  const fetchProductRates = async () => {
-    try {
-      const { data } = await axios.get(`/api/v1/products/get_reviews/${id}`);
-      console.log(data);
-      setProductReviews(data);
-    } catch (error) {}
-  };
 
   useEffect(() => {
+    const fetchProductRates = async () => {
+      try {
+        const { data } = await axios.get(`/api/v1/products/get_reviews/${id}`);
+        console.log(data);
+        setProductReviews(data);
+      } catch (error) {}
+    };
     fetchProductRates();
   }, [id]);
 

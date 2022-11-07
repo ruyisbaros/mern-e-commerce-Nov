@@ -32,20 +32,19 @@ const CreateProduct = () => {
     setActiveImg(upldImages[index]);
   }, [index, upldImages]);
 
-  const fetchCategories = async () => {
-    try {
-      dispatch(loadingStart());
-      const { data } = await axios.get("/api/v1/categories/all_cats");
-      console.log(data);
-      setCategories(data);
-      dispatch(loadingFinish());
-    } catch (error) {
-      dispatch(loadingFinish());
-      toast.error(error.response.data.message);
-    }
-  };
-
   useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        dispatch(loadingStart());
+        const { data } = await axios.get("/api/v1/categories/all_cats");
+        console.log(data);
+        setCategories(data);
+        dispatch(loadingFinish());
+      } catch (error) {
+        dispatch(loadingFinish());
+        toast.error(error.response.data.message);
+      }
+    };
     fetchCategories();
   }, []);
 
