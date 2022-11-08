@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import Rating from "../utils/Rating";
 import { BiEuro } from "react-icons/bi";
@@ -19,6 +19,20 @@ const ShopCartItem = ({
   token,
 }) => {
   const dispatch = useDispatch();
+  const [productReviews, setProductReviews] = useState([]);
+
+  useEffect(() => {
+    const fetchProductRates = async () => {
+      try {
+        const { data } = await axios.get(
+          `/api/v1/products/get_reviews/${product._id}`
+        );
+        console.log(data);
+        setProductReviews(data);
+      } catch (error) {}
+    };
+    fetchProductRates();
+  }, [_id]);
 
   const removeItem = async () => {
     try {
@@ -55,8 +69,11 @@ const ShopCartItem = ({
         </div>
         <div className="cart_item-rating">
           <Rating
-            rating={product?.rate / product?.rate_times}
-            numReviews={product?.rate_times}
+            rating={
+              productReviews.reduce((a, b) => a + b.rate_value, 0) /
+              productReviews.length
+            }
+            numReviews={productReviews.length}
           />
         </div>
         <div className="cart_item-price">
