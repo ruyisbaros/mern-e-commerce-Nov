@@ -87,7 +87,7 @@ const Products = ({ isAdmin }) => {
     setTimeout(() => {
       setloaadImageSeen(false);
       window.scrollTo(0, document.body.scrollHeight);
-    }, 2000);
+    }, 1500);
   };
 
   return (
