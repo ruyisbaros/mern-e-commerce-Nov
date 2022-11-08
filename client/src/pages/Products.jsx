@@ -5,7 +5,6 @@ import { loadingFinish, loadingStart } from "../redux/loadSlicer";
 import axios from "axios";
 import ProductItem from "../components/ProductItem";
 import { getProducts } from "../redux/productsSlicer";
-import Filters from "../components/Filters";
 
 const Products = ({ isAdmin }) => {
   const dispatch = useDispatch();
@@ -54,21 +53,51 @@ const Products = ({ isAdmin }) => {
       toast.error(error.response.data.message);
     }
   };
+  const fetchProductsWithCategory = async () => {
+    try {
+      dispatch(loadingStart());
+      const { data } = await axios.get(
+        `/api/v1/products/get_all?limit=${
+          page * 9
+        }&category=${category}&sort=${sort}&title[regex]=${search}`
+      );
+      console.log(data);
+      setProducts(data.products);
+      dispatch(getProducts(data.products));
+      dispatch(loadingFinish());
+    } catch (error) {
+      dispatch(loadingFinish());
+      toast.error(error.response.data.message);
+    }
+  };
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    if (category) {
+      fetchProductsWithCategory();
+    } else {
+      fetchProducts();
+    }
+  }, [category, sort, search, page]);
 
   return (
     <div className="products">
-      <Filters
-        products={products}
-        categories={categories}
-        setCallback={setCallback}
-        setCategory={setCategory}
-        setSort={setSort}
-        setSearch={setSearch}
-        setPage={setPage}
-      />
+      <div className="filetrs-main">
+        <div className="filter_content">
+          <span>Filter:</span>
+          <select
+            name="category"
+            id=""
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="">All Products</option>
+            {categories?.map((cat) => (
+              <option key={cat._id} value={cat._id}>
+                {cat.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
       <div className="products-sorround">
         {products?.map((product) => (
           <ProductItem

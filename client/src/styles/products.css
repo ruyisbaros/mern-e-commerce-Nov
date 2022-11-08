@@ -1,3 +1,6 @@
+.products {
+  width: 100%;
+}
 .products-sorround {
   width: 100%;
   display: grid;
