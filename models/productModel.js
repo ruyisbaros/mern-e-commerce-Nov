@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+/* const mongoosastic = require("mongoosastic"); */
 
 const productSchema = new mongoose.Schema(
   {
@@ -39,6 +40,15 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+/* productSchema.plugin(mongoosastic, {
+  host: "localhost",
+  port: 9200,
+}); */
+
 const Product = mongoose.model("Product", productSchema);
+
+/* Product.createMapping((err, mapping) => {
+  console.log("mapping created");
+}); */
 
 module.exports = Product;

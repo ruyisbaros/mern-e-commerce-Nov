@@ -41,9 +41,7 @@ const Products = ({ isAdmin }) => {
     try {
       dispatch(loadingStart());
       const { data } = await axios.get(
-        `/api/v1/products/get_all?limit=${
-          page * 3
-        }&sort=${sort}&title[regex]=${search}`
+        `/api/v1/products/get_all?limit=${page * 3}&sort=${sort}`
       );
       console.log(data);
       setProducts(data.products);
@@ -60,7 +58,7 @@ const Products = ({ isAdmin }) => {
       const { data } = await axios.get(
         `/api/v1/products/get_all?limit=${
           page * 9
-        }&category=${category}&sort=${sort}&title[regex]=${search}`
+        }&category=${category}&sort=${sort}`
       );
       console.log(data);
       setProducts(data.products);
@@ -71,9 +69,28 @@ const Products = ({ isAdmin }) => {
       toast.error(error.response.data.message);
     }
   };
+
+  const fetchProductsWithQuery = async () => {
+    try {
+      dispatch(loadingStart());
+      const { data } = await axios.get(
+        `/api/v1/products/get_all_test?search=${search}`
+      );
+      console.log(data);
+      setProducts(data.products);
+      dispatch(getProducts(data.products));
+      dispatch(loadingFinish());
+    } catch (error) {
+      dispatch(loadingFinish());
+      toast.error(error.response.data.message);
+    }
+  };
+
   useEffect(() => {
     if (category) {
       fetchProductsWithCategory();
+    } else if (search) {
+      fetchProductsWithQuery();
     } else {
       fetchProducts();
     }

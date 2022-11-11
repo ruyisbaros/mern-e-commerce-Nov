@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+/* const mongoosastic = require("mongoosastic"); */
 
 const userSchema = new mongoose.Schema(
   {
@@ -78,7 +79,14 @@ userSchema.methods.createResetToken = function () {
 
   return resetToken;
 };
+/* userSchema.plugin(mongoosastic, {
+  host: "localhost",
+  port: 9200,
+}); */
 
+/* User.createMapping((err, mapping) => {
+  console.log("mapping created");
+}); */
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;

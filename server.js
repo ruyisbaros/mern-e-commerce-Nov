@@ -2,6 +2,7 @@ require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
+const body_parser = require("body-parser");
 const cors = require("cors");
 const morgan = require("morgan");
 const fileUpload = require("express-fileupload");
@@ -13,6 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
+app.use(body_parser.json());
 app.use(morgan("dev"));
 app.use(
   fileUpload({

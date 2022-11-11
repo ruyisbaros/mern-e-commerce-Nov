@@ -1,0 +1,35 @@
+mongo_url="mongodb+srv://ahmet:ahmet123@cluster0.b5gxnc5.mongodb.net/shopwithahmet?retryWrites=true&w=majority"
+elasticsearch-urls=["localhost:9200"]
+
+elasticsearch-max-conns=4
+
+elasticsearch-max-seconds=5
+
+elasticsearch-max-bytes=8000000
+
+dropped-collections=false
+
+dropped-databases=false
+
+namespace-regex="^products.title"
+direct-read-namespaces=["products.title","products.description"]
+
+[[mapping]]
+namespace="products.title"
+index="products"
+
+#[[mapping]]
+#namespace="products.title"
+#index="products"
+
+[[script]]
+namespace="products.title"
+script= """
+module.exports=function(doc){
+var newdoc={
+    title:doc.title,
+    description:doc.description
+}
+return newdoc
+}
+"""
