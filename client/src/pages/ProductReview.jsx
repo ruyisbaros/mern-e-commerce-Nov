@@ -228,7 +228,7 @@ const ProductReview = ({ currentUser }) => {
         <div className="see_product_reviews">
           {productReviews.map((rew) => (
             <div key={rew._id} className="see_product_reviews-box">
-              <img src={reviewProduct?.images[0]?.url} alt="" />
+              <img src={rew.rater.avatar.url} alt="" />
               <p className="rater_name">{rew.rater?.name}</p>
               <Rate rating={rew.rate_value} />
               <p className="rater_says">{rew.rate_comment}</p>
