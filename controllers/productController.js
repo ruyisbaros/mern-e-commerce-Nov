@@ -13,7 +13,7 @@ class APIfeatures {
     this.queryString = queryString;
   }
 
-  /* filtering() {
+  filtering() {
     const queryObj = { ...this.queryString };
     const removedKeys = ["page", "sort", "limit"];
     removedKeys.forEach((key) => delete queryObj[key]);
@@ -28,7 +28,7 @@ class APIfeatures {
     this.query.find(JSON.parse(queryStr));
 
     return this;
-  } */
+  }
 
   sorting() {
     if (this.queryString.sort) {
@@ -53,7 +53,7 @@ class APIfeatures {
 
 exports.getAllProducts = asyncHandler(async (req, res) => {
   const features = new APIfeatures(Product.find(), req.query)
-    /* .filtering() */
+    .filtering()
     .sorting()
     .paginating();
   const products = await features.query.populate("category images");
