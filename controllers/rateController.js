@@ -12,7 +12,12 @@ exports.createRate = asyncHandler(async (req, res) => {
   res.status(201).json(newRate);
 });
 exports.getUserRates = asyncHandler(async (req, res) => {
-  const rates = await Rate.find({ owner: req.params.id }).populate("rater");
+  const rates = await Rate.find({ owner: req.params.id }).populate({
+    path: "rater",
+    populate: {
+      path: "avatar",
+    },
+  });
 
   res.status(201).json(rates);
 });

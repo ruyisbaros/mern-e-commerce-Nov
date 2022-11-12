@@ -13,6 +13,7 @@ import { authLogout } from "../redux/currentUserSlicer";
 const AdminHeader = () => {
   const dispatch = useDispatch();
   const [isLogged, setIsLogged] = useState(false);
+  const { currentUser } = useSelector((store) => store.currentUser);
 
   useEffect(() => {
     if (localStorage.getItem("firstLogin")) {
@@ -104,6 +105,9 @@ const AdminHeader = () => {
               >
                 Logout
               </Link>
+            </li>
+            <li className="profile_avatar">
+              <img src={currentUser?.avatar?.url} alt="" />
             </li>
           </>
         ) : (

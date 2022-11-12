@@ -185,7 +185,12 @@ exports.updateProduct = asyncHandler(async (req, res) => {
 /* RATINGs */
 
 exports.getProductReviews = asyncHandler(async (req, res) => {
-  const rates = await Rate.find({ rated: req.params.id }).populate("rater");
+  const rates = await Rate.find({ rated: req.params.id }).populate({
+    path: "rater",
+    populate: {
+      path: "avatar",
+    },
+  });
 
   res.status(200).json(rates);
 });

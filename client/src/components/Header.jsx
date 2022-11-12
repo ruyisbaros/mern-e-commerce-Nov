@@ -14,6 +14,7 @@ const HeaderClient = () => {
   const dispatch = useDispatch();
   const [isLogged, setIsLogged] = useState(false);
   const { cartItems } = useSelector((store) => store.cartItems);
+  const { currentUser } = useSelector((store) => store.currentUser);
 
   useEffect(() => {
     if (localStorage.getItem("firstLogin")) {
@@ -93,6 +94,9 @@ const HeaderClient = () => {
               <Link to="/cart" className="link_class">
                 <BsCart4 size={25} />
               </Link>
+            </li>
+            <li className="profile_avatar">
+              <img src={currentUser?.avatar?.url} alt="" />
             </li>
           </>
         ) : (

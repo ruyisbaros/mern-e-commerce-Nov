@@ -36,23 +36,22 @@ function App() {
   //console.log(cartItems);
   const [isAdmin, setIsAdmin] = useState(false);
 
-  const refreshTokenFunc = async () => {
-    try {
-      const { data } = await axios.get("/api/v1/auth/refresh_token");
-      console.log(data);
-      dispatch(
-        refreshToken({
-          token: data.accessToken,
-          currentUser: data.current_user,
-        })
-      );
-    } catch (error) {
-      dispatch(userLoggedFinish());
-      alert(error.response.data.message);
-    }
-  };
-
   useEffect(() => {
+    const refreshTokenFunc = async () => {
+      try {
+        const { data } = await axios.get("/api/v1/auth/refresh_token");
+        console.log(data);
+        dispatch(
+          refreshToken({
+            token: data.accessToken,
+            currentUser: data.current_user,
+          })
+        );
+      } catch (error) {
+        dispatch(userLoggedFinish());
+        alert(error.response.data.message);
+      }
+    };
     if (localStorage.getItem("firstLogin")) {
       refreshTokenFunc();
 
