@@ -33,8 +33,15 @@ const userSchema = new mongoose.Schema(
     gender: {
       type: String,
       enum: ["Male", "Female", "Other"],
+      default: "Other",
     },
     cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "CartItem" }],
+    address: {
+      street: String,
+      zipCode: Number,
+      city: String,
+      country: String,
+    },
     resetPasswordToken: String,
     resetPasswordTime: Date,
   },

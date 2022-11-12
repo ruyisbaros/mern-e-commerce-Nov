@@ -100,7 +100,7 @@ const ProductReview = ({ currentUser }) => {
     const { name, value } = e.target;
     setRateCredentials({ ...rateCredentials, [name]: value });
   };
-  console.log(rateCredentials);
+  //console.log(rateCredentials);
 
   const handleRateSubmit = async (e) => {
     e.preventDefault();

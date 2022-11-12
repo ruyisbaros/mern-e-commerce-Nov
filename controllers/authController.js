@@ -5,7 +5,8 @@ const bcrypt = require("bcrypt");
 
 //Sign Up or Register
 exports.register = asyncHandler(async (req, res) => {
-  const { name, email, password, avatar } = req.body;
+  const { name, email, password, avatar, gender, address } = req.body;
+  const { street, zipCode, city, country } = address;
 
   const uniqueCheck = await User.findOne({ email });
   if (uniqueCheck) {
@@ -13,7 +14,14 @@ exports.register = asyncHandler(async (req, res) => {
       .status(401)
       .json({ message: `${email} emailId is already in Used` });
   }
-  const registeredUser = await User.create({ name, email, password, avatar });
+  const registeredUser = await User.create({
+    name,
+    email,
+    password,
+    avatar,
+    gender,
+    address: { street, zipCode, city, country },
+  });
 
   const accessToken = registeredUser.createJwtToken();
   const refreshToken = registeredUser.createReFreshToken();

@@ -79,7 +79,7 @@ const Register = () => {
 
       const { data } = await axios.post("/api/v1/images/upload", formData);
       setIsCreated(false);
-      console.log(data);
+      //console.log(data);
       setSelectedImageId(data.public_id);
       setSignUpUser({ ...signUpUser, avatar: data._id });
     } catch (error) {
@@ -87,7 +87,7 @@ const Register = () => {
       toast.error(error.response.data.message);
     }
   };
-  console.log(signUpUser);
+  //console.log(signUpUser);
   const deleteImage = async () => {
     setSelectedFile("");
     const { data } = await axios.delete(

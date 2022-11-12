@@ -41,13 +41,13 @@ const ProfileDetail = () => {
           }
         );
         dispatch(loadingFinish());
-        toast.success(data.message);
         setPwdCredentials({
           ...pwdCredentials,
           current_password: "",
           new_password: "",
           conf_password: "",
         });
+        toast.success(data.message);
       } catch (error) {
         dispatch(loadingFinish());
         toast.error(error.response.data.message);
@@ -56,7 +56,7 @@ const ProfileDetail = () => {
       toast.error("Passwords do not match!");
     }
   };
-
+  console.log(pwdCredentials);
   return (
     <div className="profile_detail_box">
       <div className="profile_detail_header">
@@ -121,6 +121,8 @@ const ProfileDetail = () => {
                 id="new_password"
                 type={newpassType ? "text" : "password"}
                 placeholder="Enter a password"
+                value={new_password}
+                onChange={handleInput}
               />
               <small
                 className="small_new"
@@ -138,6 +140,8 @@ const ProfileDetail = () => {
                 id="conf_password"
                 type={confPassType ? "text" : "password"}
                 placeholder="Enter the password again"
+                value={conf_password}
+                onChange={handleInput}
               />
               <small
                 className="small_conf"

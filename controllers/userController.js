@@ -38,3 +38,5 @@ exports.getUserCartInfo = asyncHandler(async (req, res) => {
 
   res.status(201).json(cartItems);
 });
+
+exports.updateUserDetail = asyncHandler(async (req, res) => {});
