@@ -107,7 +107,11 @@ const AdminHeader = () => {
               </Link>
             </li>
             <li className="profile_avatar">
-              <Link to={`/profile/${currentUser._id}`} className="link_class">
+              <Link
+                onClick={() => setMenu(false)}
+                to={`/profile/${currentUser._id}`}
+                className="link_class"
+              >
                 <img src={currentUser?.avatar?.url} alt="" />
               </Link>
             </li>

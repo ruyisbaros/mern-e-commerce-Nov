@@ -1,6 +1,7 @@
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
+const bcrypt = require("bcrypt");
 
 //Sign Up or Register
 exports.register = asyncHandler(async (req, res) => {
@@ -84,4 +85,19 @@ exports.generateRefreshToken = asyncHandler(async (req, res) => {
 exports.logout = asyncHandler(async (req, res) => {
   res.clearCookie("refreshToken", { path: "/api/v1/auth/refresh_token" });
   return res.status(200).json({ message: "You have been logged out!" });
+});
+
+exports.updatePassword = asyncHandler(async (req, res) => {
+  const { current_password, new_password } = req.body;
+  const user = await User.findById(req.params.id);
+
+  const passowrdMatches = await user.isPasswordTrue(current_password);
+  if (!passowrdMatches) {
+    return res.status(401).json({ message: "Wrong credentials" });
+  }
+
+  const hashed_password = await bcrypt.hash(new_password, 10);
+
+  await User.findByIdAndUpdate(user._id, { password: hashed_password });
+  res.status(201).json({ message: "Password has been updated" });
 });

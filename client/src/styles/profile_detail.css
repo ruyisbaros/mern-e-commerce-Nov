@@ -71,7 +71,30 @@
 .current_p {
   padding-bottom: 3rem;
   border-bottom: 1px solid #eee;
+  /* background: #ccc; */
+  position: relative;
 }
+.current_p > small {
+  position: absolute;
+  right: 10px;
+  top: 2.5rem;
+  cursor: pointer;
+}
+.updadet_p {
+  /* background: #eee; */
+  position: relative;
+}
+.updadet_p .small_new,
+.updadet_p .small_conf {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 3.5rem;
+}
+.updadet_p .small_conf {
+  top: 9rem;
+}
+
 .current_p input,
 .updadet_p input {
   display: block;
@@ -94,4 +117,28 @@
   border: 1px solid red;
   padding: 3px 10px;
   border-radius: 3px;
+}
+
+@media (max-width: 1280px) {
+  .profile_detail_general-right,
+  .profile_detail_password-right,
+  .profile_detail_dltaccount-right {
+    flex: 1.6;
+    padding-left: 3rem;
+  }
+  .profile_detail_general-right form,
+  .profile_detail_password-right form {
+    width: 70%;
+  }
+}
+
+@media (max-width: 800px) {
+}
+
+@media (max-width: 500px) {
+  .profile_detail_general,
+  .profile_detail_password,
+  .profile_detail_dltaccount {
+    flex-direction: column;
+  }
 }
