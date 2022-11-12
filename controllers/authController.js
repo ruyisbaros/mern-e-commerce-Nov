@@ -5,8 +5,7 @@ const bcrypt = require("bcrypt");
 
 //Sign Up or Register
 exports.register = asyncHandler(async (req, res) => {
-  const { name, email, password, avatar, gender, address } = req.body;
-  const { street, zipCode, city, country } = address;
+  const { name, email, password, avatar, gender } = req.body;
 
   const uniqueCheck = await User.findOne({ email });
   if (uniqueCheck) {
@@ -20,7 +19,6 @@ exports.register = asyncHandler(async (req, res) => {
     password,
     avatar,
     gender,
-    address: { street, zipCode, city, country },
   });
 
   const accessToken = registeredUser.createJwtToken();
