@@ -37,10 +37,22 @@ const userSchema = new mongoose.Schema(
     },
     cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "CartItem" }],
     address: {
-      street: String,
-      zipCode: Number,
-      city: String,
-      country: String,
+      street: {
+        type: String,
+        default: "",
+      },
+      zipCode: {
+        type: Number,
+        default: 0,
+      },
+      city: {
+        type: String,
+        default: "",
+      },
+      country: {
+        type: String,
+        default: "",
+      },
     },
     resetPasswordToken: String,
     resetPasswordTime: Date,

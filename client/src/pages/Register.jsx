@@ -22,11 +22,17 @@ const Register = () => {
   const [signUpUser, setSignUpUser] = useState({
     name: "",
     email: "",
+    address: {
+      street: "",
+      zipCode: null,
+      city: "",
+      country: "",
+    },
     password: "",
     confPassword: "",
     avatar: "63668c73fec5be4a0446f8a1",
   });
-  const { name, avatar, email, confPassword, password } = signUpUser;
+  const { name, avatar, email, confPassword, password, address } = signUpUser;
   const [passType, setPassType] = useState(false);
   const [confPassType, setConfPassType] = useState(false);
   const [isCreated, setIsCreated] = useState(false);
@@ -107,6 +113,7 @@ const Register = () => {
           name,
           email,
           password,
+          address,
           avatar,
         });
         console.log(data);
