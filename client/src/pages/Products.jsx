@@ -69,16 +69,16 @@ const Products = ({ isAdmin }) => {
       toast.error(error.response.data.message);
     }
   };
-
+  const [searchItems, setSearchItems] = useState([]);
   const fetchProductsWithQuery = async () => {
     try {
       dispatch(loadingStart());
       const { data } = await axios.get(
-        `/api/v1/products/get_all_test?search=${search}`
+        `/api/v1/products/get_all_search?title=${search}`
       );
       console.log(data);
-      setProducts(data.products);
-      dispatch(getProducts(data.products));
+      setSearchItems(data);
+
       dispatch(loadingFinish());
     } catch (error) {
       dispatch(loadingFinish());
@@ -89,13 +89,19 @@ const Products = ({ isAdmin }) => {
   useEffect(() => {
     if (category) {
       fetchProductsWithCategory();
-    } else if (search) {
+    } else {
+      fetchProducts();
+    }
+  }, [category, sort, page]);
+
+  useEffect(() => {
+    if (search) {
       fetchProductsWithQuery();
     } else {
       fetchProducts();
     }
-  }, [category, sort, search, page]);
-
+  }, [search]);
+  console.log(searchItems);
   const [loaadImageSeen, setloaadImageSeen] = useState(false);
 
   const loadingActions = () => {

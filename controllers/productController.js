@@ -61,13 +61,16 @@ exports.getAllProducts = asyncHandler(async (req, res) => {
   res.status(200).json({ pageSize: products.length, products });
 });
 
-exports.getAllProductsTest = asyncHandler(async (req, res) => {
-  console.log(req.query ? "var" : "yok");
+exports.getAllProductsSearched = asyncHandler(async (req, res) => {
+  //console.log(req.query ? "var" : "yok");
+  const { title } = req.query;
+  //let products = await Product.find({}).populate({ path: "images" });
+  //console.log(products);
   const products = await Product.aggregate([
     {
       $search: {
         autocomplete: {
-          query: req.query.search,
+          query: title,
           path: "title",
           fuzzy: {
             maxEdits: 2,
@@ -75,8 +78,34 @@ exports.getAllProductsTest = asyncHandler(async (req, res) => {
         },
       },
     },
-  ]).toArray();
-  console.log(products);
+    {
+      $limit: 5,
+    },
+
+    /* {
+      $lookup: {
+        from: "Product",
+        localField: "Product.images",
+        foreignField: "Image",
+        as: "images",
+      },
+    }, */
+
+    {
+      $project: {
+        _id: 1,
+        title: 1,
+      },
+    },
+  ]);
+  //Patients.populate(result, {path: "patient"}, callback);
+  /* const returned_products = Promise.all(
+    products.map(
+      async (product) =>
+        await Product.findById(product._id).populate("category images")
+    )
+  ); */
+  //console.log(products);
   res.status(200).json(products);
 });
 
