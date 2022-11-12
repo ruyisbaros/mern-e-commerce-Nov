@@ -96,7 +96,9 @@ const HeaderClient = () => {
               </Link>
             </li>
             <li className="profile_avatar">
-              <img src={currentUser?.avatar?.url} alt="" />
+              <Link to={`/profile/${currentUser._id}`} className="link_class">
+                <img src={currentUser?.avatar?.url} alt="" />
+              </Link>
             </li>
           </>
         ) : (

@@ -25,7 +25,9 @@ button,
 input {
   cursor: pointer;
 }
-
+input:read-only {
+  cursor: not-allowed;
+}
 button:disabled {
   cursor: not-allowed;
 }
@@ -117,3 +119,4 @@ img {
 @import url("./styles/categories.css");
 @import url("./styles/create_edit_categories.css");
 @import url("./styles/create_edit_products.css");
+@import url("./styles/profile_detail.css");

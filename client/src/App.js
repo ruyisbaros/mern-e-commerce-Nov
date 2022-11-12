@@ -26,6 +26,7 @@ import AdminHeader from "./components/AdminHeader.jsx";
 import { fetchCartItems } from "./redux/cartBoxSlicer.js";
 import CheckOut from "./pages/CheckOut.jsx";
 import CheckOutSingle from "./pages/CheckOutSingle";
+import ProfileDetail from "./pages/ProfileDetail.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -59,7 +60,7 @@ function App() {
         refreshTokenFunc();
       }, 6 * 24 * 60 * 60 * 1000); //6 days
     }
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (currentUser) {
@@ -117,6 +118,7 @@ function App() {
             />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/profile/:id" element={<ProfileDetail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/history" element={<OrderHistory />} />
             <Route

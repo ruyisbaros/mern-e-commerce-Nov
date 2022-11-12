@@ -1,0 +1,97 @@
+.profile_detail_box {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.profile_detail_header {
+  width: 100%;
+  height: 100px;
+  background: #f7f8fb;
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+}
+
+.profile_detail_general,
+.profile_detail_password,
+.profile_detail_dltaccount {
+  min-height: 200px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  padding: 2rem 1rem;
+}
+.profile_detail_general-left,
+.profile_detail_password-left,
+.profile_detail_dltaccount-left {
+  flex: 1;
+}
+
+.profile_detail_general-right,
+.profile_detail_password-right,
+.profile_detail_dltaccount-right {
+  flex: 2;
+  padding-left: 1rem;
+}
+
+.password_header,
+.profile_header {
+  color: #79589f;
+}
+.dltaccount_header {
+  color: red;
+}
+/* Profile */
+.profile_detail_general-right {
+  display: flex;
+  gap: 1rem;
+}
+.profile_detail_general-right img {
+  width: 70px;
+  height: 70px;
+  border-radius: 4px;
+}
+.profile_detail_general-right form {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  /*  background: #eee; */
+}
+
+.profile_detail_general-right form input {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+/* Password */
+.profile_detail_password-right form {
+  display: flex;
+  width: 60%;
+  flex-direction: column;
+  /*  background: #eee; */
+}
+.current_p {
+  padding-bottom: 3rem;
+  border-bottom: 1px solid #eee;
+}
+.current_p input,
+.updadet_p input {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.new_password_label {
+  margin-top: 1rem;
+}
+.updadet_p .update_password {
+  padding: 3px 10px;
+  font-weight: bold;
+  color: #333;
+  border-radius: 3px;
+}
+/* Close Account */
+.profile_detail_dltaccount-right .close_account {
+  background: transparent;
+  color: red;
+  border: 1px solid red;
+  padding: 3px 10px;
+  border-radius: 3px;
+}
