@@ -6,6 +6,7 @@ import axios from "axios";
 import ProductItem from "../components/ProductItem";
 import { getProducts } from "../redux/productsSlicer";
 import infiniteImg from "../images/loading.35b947f5.gif";
+import { Link } from "react-router-dom";
 
 const Products = ({ isAdmin }) => {
   const dispatch = useDispatch();
@@ -70,6 +71,7 @@ const Products = ({ isAdmin }) => {
     }
   };
   const [searchItems, setSearchItems] = useState([]);
+  const [searchItemsSeen, setSearchItemsSeen] = useState(false);
   const fetchProductsWithQuery = async () => {
     try {
       dispatch(loadingStart());
@@ -101,7 +103,13 @@ const Products = ({ isAdmin }) => {
       fetchProducts();
     }
   }, [search]);
-  console.log(searchItems);
+  useEffect(() => {
+    if (search) {
+      setSearchItemsSeen(true);
+    } else {
+      setSearchItemsSeen(false);
+    }
+  }, [search]);
   const [loaadImageSeen, setloaadImageSeen] = useState(false);
 
   const loadingActions = () => {
@@ -134,12 +142,14 @@ const Products = ({ isAdmin }) => {
           </select>
         </div>
 
-        <input
-          type="text"
-          placeholder="Type your key word"
-          value={search}
-          onChange={(e) => setSearch(e.target.value.toLowerCase())}
-        />
+        <div className="filter_search_text">
+          <input
+            type="text"
+            placeholder="Type your key word"
+            value={search}
+            onChange={(e) => setSearch(e.target.value.toLowerCase())}
+          />
+        </div>
 
         <div className="filter_content">
           <span>Sort By:</span>
@@ -166,6 +176,17 @@ const Products = ({ isAdmin }) => {
           />
         ))}
       </div>
+      {searchItemsSeen && (
+        <div className="search_results">
+          {searchItems.map((item) => (
+            <p key={item._id}>
+              <Link to={`/products/${item._id}`} className="link_class">
+                {item.title}
+              </Link>
+            </p>
+          ))}
+        </div>
+      )}
       {loaadImageSeen && (
         <div className="infinite_loading">
           <img src={infiniteImg} alt="" />

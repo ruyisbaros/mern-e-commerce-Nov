@@ -64,7 +64,7 @@ exports.getAllProducts = asyncHandler(async (req, res) => {
 exports.getAllProductsSearched = asyncHandler(async (req, res) => {
   //console.log(req.query ? "var" : "yok");
   const { title } = req.query;
-  //let products = await Product.find({}).populate({ path: "images" });
+
   //console.log(products);
   const products = await Product.aggregate([
     {
@@ -81,16 +81,6 @@ exports.getAllProductsSearched = asyncHandler(async (req, res) => {
     {
       $limit: 5,
     },
-
-    /* {
-      $lookup: {
-        from: "Product",
-        localField: "Product.images",
-        foreignField: "Image",
-        as: "images",
-      },
-    }, */
-
     {
       $project: {
         _id: 1,
@@ -98,14 +88,7 @@ exports.getAllProductsSearched = asyncHandler(async (req, res) => {
       },
     },
   ]);
-  //Patients.populate(result, {path: "patient"}, callback);
-  /* const returned_products = Promise.all(
-    products.map(
-      async (product) =>
-        await Product.findById(product._id).populate("category images")
-    )
-  ); */
-  //console.log(products);
+
   res.status(200).json(products);
 });
 

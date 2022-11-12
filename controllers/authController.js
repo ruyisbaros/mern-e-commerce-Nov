@@ -2,16 +2,6 @@ const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 
-/* exports.isEmailInUsed=asyncHandler(async(req,res)=>{
-    const{email}=req.body
-    const uniqueCheck = await User.findOne({ email });
-  if (uniqueCheck) {
-    return false;
-  }else{
-    return true;
-  }
-}) */
-
 //Sign Up or Register
 exports.register = asyncHandler(async (req, res) => {
   const { name, email, password, avatar } = req.body;
@@ -81,7 +71,9 @@ exports.generateRefreshToken = asyncHandler(async (req, res) => {
   if (!decoded)
     return res.status(401).json({ message: "Please login or register" });
 
-  const current_user = await User.findById(decoded.id).select("-password");
+  const current_user = await User.findById(decoded.id)
+    .populate("avatar")
+    .select("-password");
   //console.log(current_user);
 
   const accessToken = current_user.createJwtToken();

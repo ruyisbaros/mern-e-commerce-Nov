@@ -66,13 +66,6 @@
 
 /* Admin Check box */
 
-.product_item > input {
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  z-index: 1;
-}
-
 @media (max-width: 500px) {
   .product_item {
     min-width: 450px;

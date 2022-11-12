@@ -43,6 +43,7 @@
 }
 
 .header_cart-icon {
+  display: block;
   position: relative;
 }
 
@@ -52,7 +53,7 @@
   color: white;
   position: absolute;
   top: -12px;
-  right: -5px;
+  right: 5px;
   padding: 5px 7px;
   font-size: 10px;
 }

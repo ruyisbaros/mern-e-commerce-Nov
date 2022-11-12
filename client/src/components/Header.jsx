@@ -88,6 +88,12 @@ const HeaderClient = () => {
                 Logout
               </Link>
             </li>
+            <li className="header_cart-icon">
+              <span>{cartItems.length}</span>
+              <Link to="/cart" className="link_class">
+                <BsCart4 size={25} />
+              </Link>
+            </li>
           </>
         ) : (
           <li>
@@ -105,12 +111,6 @@ const HeaderClient = () => {
           <FaTimes size={25} />
         </li>
       </ul>
-      <div className="header_cart-icon">
-        <span>{cartItems.length}</span>
-        <Link to="/cart" className="link_class">
-          <BsCart4 size={25} />
-        </Link>
-      </div>
     </div>
   );
 };
