@@ -25,9 +25,7 @@ button,
 input {
   cursor: pointer;
 }
-input:read-only {
-  cursor: not-allowed;
-}
+
 button:disabled {
   cursor: not-allowed;
 }

@@ -39,4 +39,23 @@ exports.getUserCartInfo = asyncHandler(async (req, res) => {
   res.status(201).json(cartItems);
 });
 
-exports.updateUserDetail = asyncHandler(async (req, res) => {});
+exports.updateUserDetail = asyncHandler(async (req, res) => {
+  const { street, zipCode, city, country, gender, avatar } = req.body;
+
+  await User.findByIdAndUpdate(
+    req.params.id,
+    {
+      address: {
+        street,
+        zipCode: Number(zipCode),
+        city,
+        country,
+      },
+      gender,
+      avatar,
+    },
+    { new: true }
+  );
+
+  res.status(200).json({ message: "Your profile updated successufully" });
+});
