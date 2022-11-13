@@ -12,24 +12,23 @@ const ShopCard = () => {
   const { token, currentUser } = useSelector((store) => store.currentUser);
   const [total, setTotal] = useState(0);
 
-  const fetchCartBox = async () => {
-    try {
-      const { data } = await axios.get(
-        `/api/v1/users/get_cart/${currentUser._id}`,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
-      console.log(data);
-      dispatch(fetchCartItems(data));
-    } catch (error) {
-      alert(error.response.data.message);
-    }
-  };
-
   useEffect(() => {
+    const fetchCartBox = async () => {
+      try {
+        const { data } = await axios.get(
+          `/api/v1/users/get_cart/${currentUser._id}`,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+        console.log(data);
+        dispatch(fetchCartItems(data));
+      } catch (error) {
+        alert(error.response.data.message);
+      }
+    };
     if (currentUser) {
       fetchCartBox();
     }

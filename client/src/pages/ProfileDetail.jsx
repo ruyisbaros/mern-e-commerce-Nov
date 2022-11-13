@@ -13,7 +13,7 @@ import { MdOutlineOpenInNew, MdOutlineOpenInNewOff } from "react-icons/md";
 const ProfileDetail = () => {
   const dispatch = useDispatch();
   const { token, currentUser } = useSelector((store) => store.currentUser);
-  console.log(currentUser);
+  //console.log(currentUser);
   const [currentPassType, setCurrentPassType] = useState(false);
   const [newpassType, setNewPassType] = useState(false);
   const [confPassType, setConfPassType] = useState(false);
