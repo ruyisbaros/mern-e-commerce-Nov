@@ -4,8 +4,7 @@ const Image = require("../models/imageModel");
 const asyncHandler = require("express-async-handler");
 
 /* Admin */
-
-exposrts.getAllUsers = asyncHandler(async (req, res) => {
+exports.getAllUsers = asyncHandler(async (req, res) => {
   const users = await User.find().select("-password").populate("avatar");
 
   res.status(200).json(users);
