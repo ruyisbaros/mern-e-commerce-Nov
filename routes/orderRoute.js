@@ -26,7 +26,7 @@ router.patch(
 router.post("/create_order/:id", protect, createOrder);
 router.get("/my_orders/:id", protect, getUserOrders);
 router.delete("/cancel_order/:id", protect, cancelOrder);
-router.delete("/cancel_orders", protect, cancelOrders);
+router.post("/cancel_orders", protect, cancelOrders);
 router.patch("/return_order/:id", protect, returnOrder);
 
 module.exports = router;

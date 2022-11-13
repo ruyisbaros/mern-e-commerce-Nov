@@ -20,6 +20,9 @@ const cartBoxSlicer = createSlice({
         (ord) => ord._id !== action.payload
       );
     },
+    removeAllOrders: (state, action) => {
+      state.myOrders = [];
+    },
     getTotalValue: (state, action) => {
       state.totalValue = action.payload;
     },
@@ -31,5 +34,6 @@ export const {
   addToMyOrders,
   removeFromMyOrders,
   getTotalValue,
+  removeAllOrders,
 } = cartBoxSlicer.actions;
 export default cartBoxSlicer.reducer;

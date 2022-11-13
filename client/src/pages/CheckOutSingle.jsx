@@ -4,20 +4,26 @@ import { GrSecure } from "react-icons/gr";
 import { AiFillCreditCard } from "react-icons/ai";
 import { BiEuro } from "react-icons/bi";
 import payments from "../images/payments.png";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { loadingFail, loadingFinish, loadingStart } from "../redux/loadSlicer";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { addToMyOrders } from "../redux/ordersSlicer";
 
 const CheckOutSingle = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
-  console.log(id);
-  const { cartItems } = useSelector((store) => store.cartItems);
-  /* const navigate = useNavigate(); */
+  const { token, currentUser } = useSelector((store) => store.currentUser);
+  //console.log(id);
 
   const [singleProduct, setSingleProduct] = useState(null);
+  const [orderCredentials, setOrderCredentials] = useState({
+    value: null,
+    products: [],
+  });
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -32,6 +38,36 @@ const CheckOutSingle = () => {
     };
     id && fetchProduct();
   }, [id, dispatch]);
+
+  useEffect(() => {
+    setOrderCredentials({
+      ...orderCredentials,
+      value: singleProduct?.price,
+      products: [singleProduct?._id],
+    });
+  }, [singleProduct?._id, singleProduct?.price, currentUser?._id]);
+
+  const createOrder = async () => {
+    try {
+      dispatch(loadingStart());
+      const { data } = await axios.post(
+        `/api/v1/orders/create_order/${currentUser._id}`,
+        { ...orderCredentials },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+      dispatch(loadingFinish());
+      dispatch(addToMyOrders(data));
+      navigate("/history");
+    } catch (error) {
+      dispatch(loadingFinish());
+      toast.error(error.response.data.message);
+    }
+  };
+
   return (
     <div className="check_out-main">
       <h1 className="check_out_title">Checkout</h1>
@@ -398,7 +434,10 @@ const CheckOutSingle = () => {
                 By completing your purchase you agree to these{" "}
                 <span>Terms of Service.</span>
               </p>
-              <button className="check_out-right-checkout">
+              <button
+                onClick={createOrder}
+                className="check_out-right-checkout"
+              >
                 Complete Checkout
               </button>
             </div>

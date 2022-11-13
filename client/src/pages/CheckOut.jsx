@@ -1,20 +1,80 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { GrSecure } from "react-icons/gr";
 import { AiFillCreditCard } from "react-icons/ai";
 import { BiEuro } from "react-icons/bi";
 import payments from "../images/payments.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { loadingFinish, loadingStart } from "../redux/loadSlicer";
+import { toast } from "react-toastify";
+import { addToMyOrders } from "../redux/ordersSlicer";
+import axios from "axios";
+import { removeFromCartItems } from "../redux/cartBoxSlicer";
 
 const CheckOut = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { token, currentUser } = useSelector((store) => store.currentUser);
   const { cartItems, totalValue } = useSelector((store) => store.cartItems);
   const [totalAmaount, setTotalAmount] = useState(0);
+  console.log(cartItems);
+  const [orderCredentials, setOrderCredentials] = useState({
+    value: null,
+    products: [],
+  });
+
   useEffect(() => {
     setTotalAmount(
       cartItems.reduce((a, b) => a + b.product.price * b.quantity, 0)
     );
   }, [cartItems, totalAmaount]);
+
+  useEffect(() => {
+    setOrderCredentials({
+      ...orderCredentials,
+      value: totalAmaount,
+      products: cartItems.map((item) => item.product._id),
+    });
+  }, [cartItems, totalAmaount, currentUser?._id]);
+
+  const makeCartEmpty = async (id) => {
+    try {
+      const { data } = await axios.delete(`/api/v1/carts/delete/${id}`, {
+        headers: {
+          Authorization: token,
+        },
+      });
+      console.log(data);
+      dispatch(removeFromCartItems(id));
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
+
+  const createOrder = async () => {
+    try {
+      dispatch(loadingStart());
+      const { data } = await axios.post(
+        `/api/v1/orders/create_order/${currentUser._id}`,
+        { ...orderCredentials },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+      //Make Cart empty
+      cartItems.forEach((item) => makeCartEmpty(item._id));
+      dispatch(loadingFinish());
+      dispatch(addToMyOrders(data));
+      navigate("/history");
+    } catch (error) {
+      dispatch(loadingFinish());
+      toast.error(error.response.data.message);
+    }
+  };
   return (
     <div className="check_out-main">
       <h1 className="check_out_title">Checkout</h1>
@@ -383,7 +443,10 @@ const CheckOut = () => {
                 By completing your purchase you agree to these{" "}
                 <span>Terms of Service.</span>
               </p>
-              <button className="check_out-right-checkout">
+              <button
+                onClick={createOrder}
+                className="check_out-right-checkout"
+              >
                 Complete Checkout
               </button>
             </div>
