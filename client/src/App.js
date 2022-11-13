@@ -27,6 +27,7 @@ import { fetchCartItems } from "./redux/cartBoxSlicer.js";
 import CheckOut from "./pages/CheckOut.jsx";
 import CheckOutSingle from "./pages/CheckOutSingle";
 import ProfileDetail from "./pages/ProfileDetail.jsx";
+import Users from "./pages/adminPages/Users.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -151,6 +152,10 @@ function App() {
             <Route
               path="/edit_category/:id"
               element={isAdmin ? <EditCategory /> : <HomeClient />}
+            />
+            <Route
+              path="/users_admin"
+              element={isAdmin ? <Users /> : <HomeClient />}
             />
 
             <Route path="*" element={<NotFound />} />

@@ -5,9 +5,10 @@ const {
   getUserCartInfo,
   updateUserDetail,
   closeAccount,
+  getAllUsers,
 } = require("../controllers/userController");
-const { protect } = require("../middleWares/authMiddleWare");
-
+const { protect, restrictTo } = require("../middleWares/authMiddleWare");
+router.get("/get_users_admin", protect, restrictTo("Admin"), getAllUsers);
 router.get("/get_profile", protect, getProfileInfo);
 router.get("/get_one/:id", protect, getAnyUser);
 router.get("/get_cart/:id", protect, getUserCartInfo);

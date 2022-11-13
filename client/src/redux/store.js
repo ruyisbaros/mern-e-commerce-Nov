@@ -4,6 +4,7 @@ import currentUserSlicer from "./currentUserSlicer";
 import loadSlicer from "./loadSlicer";
 import ordersSlicer from "./ordersSlicer";
 import productsSlicer from "./productsSlicer";
+import usersSlicer from "./usersSlicer";
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     products: productsSlicer,
     cartItems: cartBoxSlicer,
     myOrders: ordersSlicer,
+    users: usersSlicer,
   },
 });
