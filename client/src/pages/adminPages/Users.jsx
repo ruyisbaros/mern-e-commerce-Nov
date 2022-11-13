@@ -77,7 +77,7 @@ const Users = () => {
   return (
     <div className="users_container">
       <div className="profile_detail_header">
-        <h4>Manage Your Account</h4>
+        <h4>Manage Active Accounts</h4>
       </div>
 
       <div className="search_actions">
@@ -123,13 +123,7 @@ const Users = () => {
               <td className="table_responsive">{user.name}</td>
 
               <td>{user.role?.map((role) => role + " ")}</td>
-              <td className="text-center">
-                {user.enabled ? (
-                  <i className="fa-solid fa-check-circle icon_green"></i>
-                ) : (
-                  <i className="fa-solid fa-check-circle icon_dark"></i>
-                )}
-              </td>
+
               <td className="text-center d-flex justify-content-around border-bottom-0">
                 <i
                   onClick={() => getDeleteUserInfo(user._id, user.name)}
