@@ -209,4 +209,7 @@
   .profile_detail_dltaccount {
     flex-direction: column;
   }
+  .more_changes select {
+    width: 100%;
+  }
 }

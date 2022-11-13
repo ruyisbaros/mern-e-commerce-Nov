@@ -30,6 +30,7 @@ const imageRoutes = require("./routes/imageRoute");
 const productRoutes = require("./routes/productRoute");
 const cartItemRoutes = require("./routes/cartItemRoute");
 const rateRoutes = require("./routes/rateRoute");
+const orderRoutes = require("./routes/orderRoute");
 
 /* Connect Database */
 mongoose
@@ -52,6 +53,7 @@ app.use("/api/v1/images", imageRoutes);
 app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/carts", cartItemRoutes);
 app.use("/api/v1/rates", rateRoutes);
+app.use("/api/v1/orders", orderRoutes);
 
 if ((process.env.NODE_ENV = "production")) {
   app.use(express.static("client/build"));
