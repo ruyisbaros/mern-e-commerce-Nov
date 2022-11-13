@@ -163,6 +163,9 @@
   border: 1px solid #eee;
   padding-bottom: 1rem;
 }
+.more_changes-avatar_sorround img {
+  object-fit: contain;
+}
 .more_changes-avatar_sorround input {
   display: none;
 }

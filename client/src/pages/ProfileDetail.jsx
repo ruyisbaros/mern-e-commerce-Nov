@@ -35,14 +35,26 @@ const ProfileDetail = () => {
 
   /* UPDATE ADDRESS AND OTHER INFO FUNCS */
   const [updateDetailInfo, setUpdateDetailInfo] = useState({
-    street: currentUser?.address?.street,
-    zipCode: currentUser?.address?.zipCode,
-    city: currentUser?.address?.city,
-    country: currentUser?.address?.country,
+    street: "",
+    zipCode: "",
+    city: "",
+    country: "",
     gender: currentUser?.address?.gender,
     avatar: currentUser?.avatar?._id,
   });
   const { street, zipCode, city, country, gender, avatar } = updateDetailInfo;
+
+  useEffect(() => {
+    setUpdateDetailInfo({
+      ...updateDetailInfo,
+      street: currentUser?.address?.street,
+      zipCode: currentUser?.address?.zipCode,
+      city: currentUser?.address?.city,
+      country: currentUser?.address?.country,
+      gender: currentUser?.address?.gender,
+      avatar: currentUser?.avatar?._id,
+    });
+  }, [token]);
 
   const handleUpdateValues = (e) => {
     const { name, value } = e.target;
