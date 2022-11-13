@@ -38,7 +38,7 @@ const Users = () => {
       try {
         dispatch(loadingStart());
         const { data } = await axios.get(`/api/v1/users/get_users_admin`, {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: token },
         });
 
         console.log(data);
@@ -64,7 +64,7 @@ const Users = () => {
     try {
       await axios.delete(
         `/api/v1/users/admin/delete_user/${deletedUserInfo.id}`,
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: token } }
       );
       toast.success("User has been deleted successufully");
       window.location.reload();
