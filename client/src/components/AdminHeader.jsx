@@ -105,6 +105,15 @@ const AdminHeader = () => {
             </li>
             <li>
               <Link
+                onClick={() => setMenu(false)}
+                to="/orders_admin"
+                className="link_class"
+              >
+                Total Orders
+              </Link>
+            </li>
+            <li>
+              <Link
                 onClick={() => {
                   setMenu(false);
                   logout();

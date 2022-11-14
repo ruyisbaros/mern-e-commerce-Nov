@@ -61,7 +61,10 @@
 /* Users Container */
 .users_container {
   position: relative;
-  width: 95%;
+  width: 100%;
+}
+.users_container table {
+  width: 100%;
 }
 
 .users_container .search_actions {
@@ -181,12 +184,21 @@
 
 @media (max-width: 1024px) {
 }
-@media (max-width: 768px) {
-  .users_container table thead,
+@media (max-width: 800px) {
+  .users_container table {
+    width: 100%;
+  }
+  /* .users_container table thead,
   .users_container table .table_responsive {
     display: none;
   }
   .users_container table tbody {
     width: 100%;
+  } */
+}
+@media (max-width: 500px) {
+  .users_container table thead,
+  .users_container table .table_responsive {
+    display: none;
   }
 }

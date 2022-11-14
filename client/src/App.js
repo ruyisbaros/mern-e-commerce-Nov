@@ -28,6 +28,7 @@ import CheckOut from "./pages/CheckOut.jsx";
 import CheckOutSingle from "./pages/CheckOutSingle";
 import ProfileDetail from "./pages/ProfileDetail.jsx";
 import Users from "./pages/adminPages/Users.jsx";
+import TotalOrders from "./pages/adminPages/TotalOrders.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -156,6 +157,10 @@ function App() {
             <Route
               path="/users_admin"
               element={isAdmin ? <Users /> : <HomeClient />}
+            />
+            <Route
+              path="/orders_admin"
+              element={isAdmin ? <TotalOrders /> : <HomeClient />}
             />
 
             <Route path="*" element={<NotFound />} />
