@@ -58,7 +58,7 @@ const Products = ({ isAdmin }) => {
       dispatch(loadingStart());
       const { data } = await axios.get(
         `/api/v1/products/get_all?limit=${
-          page * 9
+          page * 3
         }&category=${category}&sort=${sort}`
       );
       console.log(data);

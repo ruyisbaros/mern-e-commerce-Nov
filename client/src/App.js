@@ -75,25 +75,23 @@ function App() {
   console.log(currentUser);
 
   /* Fetch Cart Box */
-
-  const fetchCartBox = async () => {
-    try {
-      const { data } = await axios.get(
-        `/api/v1/users/get_cart/${currentUser._id}`,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
-      console.log(data);
-      dispatch(fetchCartItems(data));
-    } catch (error) {
-      alert(error.response.data.message);
-    }
-  };
-
   useEffect(() => {
+    const fetchCartBox = async () => {
+      try {
+        const { data } = await axios.get(
+          `/api/v1/users/get_cart/${currentUser._id}`,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+        console.log(data);
+        dispatch(fetchCartItems(data));
+      } catch (error) {
+        alert(error.response.data.message);
+      }
+    };
     if (currentUser) {
       fetchCartBox();
     }

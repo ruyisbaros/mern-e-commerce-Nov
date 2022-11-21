@@ -140,9 +140,9 @@ const OrderHistory = () => {
               ))}
             </tbody>
           </table>
-          <button onClick={deleteAllOrders} className="delete_all_orders">
+          {/* <button onClick={deleteAllOrders} className="delete_all_orders">
             Delete All Orders
-          </button>
+          </button> */}
           <ul className="info_about_orders">
             <h6>SOME INFO:</h6>
             <li>

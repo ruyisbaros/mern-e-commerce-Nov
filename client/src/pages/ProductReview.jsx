@@ -45,7 +45,7 @@ const ProductReview = ({ currentUser }) => {
       }
     };
     fetchProducts();
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     const fetchViewProduct = async () => {
@@ -63,7 +63,7 @@ const ProductReview = ({ currentUser }) => {
     if (id) {
       fetchViewProduct();
     }
-  }, [id]);
+  }, [id, dispatch]);
   const [bigImage, setBigImage] = useState("");
   useEffect(() => {
     setBigImage(reviewProduct?.images[bigImageIndex]?.url);
